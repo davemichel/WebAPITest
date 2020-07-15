@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebAPITest</name>
+    </assembly>
+    <members>
+        <member name="T:WebAPITest.Controllers.WeatherForecastController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WebAPITest.Controllers.WeatherForecastController.#ctor(Microsoft.Extensions.Logging.ILogger{WebAPITest.Controllers.WeatherForecastController})">
+            <summary>
+            
+            </summary>
+            <param name="logger"></param>
+        </member>
+        <member name="M:WebAPITest.Controllers.WeatherForecastController.Get">
+            <summary>
+            Gets a weather forecast
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:WebAPITest.Program">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WebAPITest.Program.Main(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:WebAPITest.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WebAPITest.Startup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WebAPITest.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:WebAPITest.Startup.Configuration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WebAPITest.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:WebAPITest.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
+        <member name="T:WebAPITest.WeatherForecast">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WebAPITest.WeatherForecast.Date">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WebAPITest.WeatherForecast.TemperatureC">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WebAPITest.WeatherForecast.TemperatureF">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WebAPITest.WeatherForecast.Summary">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

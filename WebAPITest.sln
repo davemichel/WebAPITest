@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPITest", "WebAPITest\WebAPITest.csproj", "{C3A5A3F1-D2E4-4779-B0BB-38A02E2C6733}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.API", "aspdotnet-core-api-openapi-swagger\07\demos\end\Library.API\Library.API.csproj", "{CC46496D-B73F-441A-80B4-432F54B074EE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C3A5A3F1-D2E4-4779-B0BB-38A02E2C6733}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3A5A3F1-D2E4-4779-B0BB-38A02E2C6733}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3A5A3F1-D2E4-4779-B0BB-38A02E2C6733}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3A5A3F1-D2E4-4779-B0BB-38A02E2C6733}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC46496D-B73F-441A-80B4-432F54B074EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC46496D-B73F-441A-80B4-432F54B074EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC46496D-B73F-441A-80B4-432F54B074EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC46496D-B73F-441A-80B4-432F54B074EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DBFD5FD0-57CF-46C8-9F50-F7CF94EF0921}
+	EndGlobalSection
+EndGlobal
