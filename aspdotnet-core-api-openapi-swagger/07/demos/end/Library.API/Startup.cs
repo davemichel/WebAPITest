@@ -1,4 +1,5 @@
-﻿using Library.API.Authentication;
+﻿using api_ver;
+using Library.API.Authentication;
 using Library.API.Contexts;
 using Library.API.OperationFilters;
 using Library.API.Services;
@@ -16,7 +17,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -109,6 +112,7 @@ namespace Library.API
             services.AddVersionedApiExplorer(setupAction =>
             {
                 setupAction.GroupNameFormat = "'v'VV";
+                setupAction.SubstituteApiVersionInUrl = true;
             });
             
             services.AddAuthentication("Basic")
@@ -124,33 +128,13 @@ namespace Library.API
                 //setupAction.ApiVersionReader = new MediaTypeApiVersionReader();
             });
 
-            var apiVersionDescriptionProvider =
-               services.BuildServiceProvider().GetService<IApiVersionDescriptionProvider>();
+            services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
+
+            services.AddControllers();
 
             services.AddSwaggerGen(setupAction =>
             {
-                foreach (var description in apiVersionDescriptionProvider.ApiVersionDescriptions)
-                {                
-                    setupAction.SwaggerDoc(
-                        $"LibraryOpenAPISpecification{description.GroupName}",
-                        new Microsoft.OpenApi.Models.OpenApiInfo()
-                        {
-                            Title = "Library API",
-                            Version = description.ApiVersion.ToString(),
-                            Description = "Through this API you can access authors and books.",
-                            Contact = new Microsoft.OpenApi.Models.OpenApiContact()
-                            {
-                                Email = "kevin.dockx@gmail.com",
-                                Name = "Kevin Dockx",
-                                Url = new Uri("https://www.twitter.com/KevinDockx")
-                            },
-                            License = new Microsoft.OpenApi.Models.OpenApiLicense()
-                            {
-                                Name = "MIT License",
-                                Url = new Uri("https://opensource.org/licenses/MIT")
-                            }
-                        });
-                }
+                setupAction.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
 
                 setupAction.AddSecurityDefinition("basicAuth", new OpenApiSecurityScheme()
                 {
@@ -185,10 +169,10 @@ namespace Library.API
                     if (actionApiVersionModel.DeclaredApiVersions.Any())
                     {
                         return actionApiVersionModel.DeclaredApiVersions.Any(v =>
-                        $"LibraryOpenAPISpecificationv{v.ToString()}" == documentName);
+                        $"LibraryOpenAPISpecificationv{v}" == documentName);
                     }
                     return actionApiVersionModel.ImplementedApiVersions.Any(v =>
-                        $"LibraryOpenAPISpecificationv{v.ToString()}" == documentName);
+                        $"LibraryOpenAPISpecificationv{v}" == documentName);
                 });
 
                 setupAction.OperationFilter<GetBookOperationFilter>();
@@ -229,14 +213,11 @@ namespace Library.API
 
                 foreach (var description in apiVersionDescriptionProvider.ApiVersionDescriptions)
                 {
+                    // original
                     setupAction.SwaggerEndpoint($"/swagger/" +
                         $"LibraryOpenAPISpecification{description.GroupName}/swagger.json",
                         description.GroupName.ToUpperInvariant());
                 }
-
-                //setupAction.SwaggerEndpoint(
-                //    "/swagger/LibraryOpenAPISpecification/swagger.json",
-                //    "Library API");
 
                 setupAction.RoutePrefix = "";
 
@@ -251,6 +232,7 @@ namespace Library.API
 
             app.UseAuthentication();
 
+            // not needed in Core 3.x
             //app.UseMvc();
         }
     }

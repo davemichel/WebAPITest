@@ -14,6 +14,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="SwaggerHelpers\SwaggerDefaultValues.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="EmbeddedAssets\index.html" />
   </ItemGroup>
 

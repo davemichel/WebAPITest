@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -42,9 +43,15 @@ namespace WebAPITest
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddMvc();
 
             // begin swagger
+            services.AddMvc(c =>
+            {
+                c.Filters.Add(new ProducesResponseTypeAttribute(StatusCodes.Status400BadRequest));
+                c.Filters.Add(new ProducesResponseTypeAttribute(StatusCodes.Status406NotAcceptable));
+                c.Filters.Add(new ProducesResponseTypeAttribute(StatusCodes.Status500InternalServerError));
+            });
+
 
             services.AddSwaggerGen(c =>
             {
@@ -85,7 +92,7 @@ namespace WebAPITest
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Weather Forecast API V1");
-                c.RoutePrefix = ""; // use the swagger default page at the root route
+                c.RoutePrefix = "swagger"; // use the swagger default page at the root route
             });
 
             // end swagger
